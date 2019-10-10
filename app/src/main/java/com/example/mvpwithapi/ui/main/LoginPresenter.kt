@@ -10,12 +10,7 @@ class LoginPresenter
 constructor(
     mLoginInteractor: LoginInteractor,
     mScheduleProvider: ScheduleProvider,
-    mCompositeDisposable: CompositeDisposable
-) : BasePresenter<LoginContract.View, LoginInteractor>(
-    mLoginInteractor,
-    mScheduleProvider,
-    mCompositeDisposable
-), LoginContract.Presenter {
+    mCompositeDisposable: CompositeDisposable) : BasePresenter<LoginContract.View, LoginInteractor>(mLoginInteractor, mScheduleProvider, mCompositeDisposable), LoginContract.Presenter {
 
     override fun login() {
         getView().showLoading()
@@ -23,11 +18,12 @@ constructor(
             mInteractor.doLogin()
                 .compose(mScheduleProvider.ioToMainObservableScheduler())
                 .subscribe({
-                    getView().loginSuccess()
+                    getView().loginSuccess(it.toString())
                     getView().hideLoading()
                 }, {
-                    getView().hideLoading()
                     getView().loginError()
+                    getView().handleError(null, it)
+                    getView().hideLoading()
                 })
         )
     }

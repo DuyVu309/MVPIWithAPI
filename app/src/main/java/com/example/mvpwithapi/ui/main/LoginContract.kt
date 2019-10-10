@@ -7,7 +7,7 @@ import io.reactivex.Observable
 
 class LoginContract{
     interface View : IBaseView{
-        fun loginSuccess()
+        fun loginSuccess(data: String)
 
         fun loginError()
     }

@@ -1,7 +1,6 @@
 package com.example.mvpwithapi.ui.main
 
-import android.util.Log
-import android.widget.Button
+import android.widget.Toast
 import butterknife.OnClick
 import com.example.mvpwithapi.R
 import com.example.mvpwithapi.base.view.BaseActivity
@@ -17,7 +16,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View {
     }
 
     override fun handleError(errorCode: Int?, throwable: Throwable?) {
-
+        Toast.makeText(this, throwable.toString(), Toast.LENGTH_LONG).show()
     }
 
     @OnClick(R.id.btnLogin)
@@ -25,13 +24,11 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View {
         mPresenter.login()
     }
 
-    override fun loginSuccess() {
-        Log.d("LoginActivity", "loginSuccess")
+    override fun loginSuccess(data: String) {
+        Toast.makeText(this, data, Toast.LENGTH_LONG).show()
     }
 
     override fun loginError() {
-        Log.d("LoginActivity", "loginError")
+        Toast.makeText(this, "loginError", Toast.LENGTH_LONG).show()
     }
-
-
 }

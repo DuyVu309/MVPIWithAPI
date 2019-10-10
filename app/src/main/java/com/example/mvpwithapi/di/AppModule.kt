@@ -52,7 +52,7 @@ class AppModule {
 
     @Provides
     @BaseUrl
-    internal fun provideBaseUrl(): String = "https://fir-database-93f1b.firebaseio.com"
+    internal fun provideBaseUrl(): String = AppConstants.BASE_URL
 
     @Provides
     internal fun provideOkHttpCache(application: Application): Cache {

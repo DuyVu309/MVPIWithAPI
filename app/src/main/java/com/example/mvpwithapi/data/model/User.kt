@@ -7,10 +7,15 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class User(
-    @Expose
-    @SerializedName("password")
-    var password: String? = null,
 
-    @SerializedName("name")
+    @SerializedName("userId")
     @Expose
-    var name: String? = null) : Parcelable
+    var userId: Int? = null,
+
+    @Expose
+    @SerializedName("id")
+    var id: Int? = null,
+
+    @Expose
+    @SerializedName("title")
+    var title: String? = null) : Parcelable
